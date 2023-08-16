@@ -19,11 +19,29 @@ public class AppArrays {
 
         int vetor3[] = new int[4];
 
-        for
+        for (int i = 0; i <vetor3.length; i++){
+
+        }
         
 
 
-        double matriz[][] = {{10,20,30}, {40,50,60}};
+        //double matriz[][] = {{10,20,30}, {40,50,60}};
+
+        double matriz[][] = new double[2][3];
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                matriz[i][j] = (i * matriz[i].length + j+1) * 10;
+            }
+        }
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.println(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+
 
         System.out.println(Arrays.toString(matriz[0]));
         System.out.println(Arrays.toString(matriz[1]));
