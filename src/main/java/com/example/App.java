@@ -17,6 +17,32 @@ public class App {
     }
 
     public App(){
+
+        boolean minhavariavel = true;
+
+        String nome = "Tiago";
+
+        int idade;
+        idade =45;
+
+        // cast conversão de tipo
+
+        char sexo = 'M';
+
+        double idade2;
+        idade2 = (double)idade;
+
+        
+
+        System.out.println("O nome é " + nome);
+
+
+
+
+
+
+
+
         try(var conn = getConnection()){
             carregarDriverJDBC();
             listarEstados(conn);
