@@ -19,7 +19,22 @@ public class AppArrays {
 
         int vetor3[] = new int[4];
 
+        for
         
+
+
+        double matriz[][] = {{10,20,30}, {40,50,60}};
+
+        System.out.println(Arrays.toString(matriz[0]));
+        System.out.println(Arrays.toString(matriz[1]));
+
+        matriz[0][1] = 888;
+
+        System.out.println(Arrays.toString(matriz[0]));
+
+
+
+
 
     }
 }
