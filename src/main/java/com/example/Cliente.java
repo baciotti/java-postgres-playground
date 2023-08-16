@@ -1,10 +1,61 @@
 package com.example;
 
 public class Cliente {
-    private double renda;
+    private double renda;    
     private char sexo;
     private int anoNascimento;  
+    private boolean especial;
+    private String nome;
+    private String cpf;
     
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public boolean isEspecial() {
+        return especial;
+    }
+
+   public String getNome() {
+    return nome;
+}
+
+
+public void setNome(String nome) {
+    this.nome = nome.toUpperCase();
+}
+
+
+ public void setEspecial(boolean especial) {
+        this.especial = especial;
+    }
+
+
+
+    // Construtor não tem tipo
+    public Cliente() {
+        double aleatorio = Math.random();
+        if (aleatorio > 0.5) {
+            especial = true;            
+        }
+
+
+    }
+
+        // Construtor não tem tipo
+        public Cliente(double renda) {
+            this();
+            double aleatorio = Math.random();    
+        }
+
+
+
+
     public char getSexo() {
         return sexo;
     }

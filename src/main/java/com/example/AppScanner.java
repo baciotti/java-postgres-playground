@@ -1,15 +1,24 @@
 package com.example;
 
-public class AppClasses {
+import java.util.Scanner;
+
+public class AppScanner {
     public static void main(String[] args) {
         System.out.println("oi");
 
         Cliente cliente = new Cliente();
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o nome: ");
+        cliente.setNome(scanner.nextLine());
+
+
         cliente.setAnoNascimento(1978);
 
         cliente.setRenda(10000);
         cliente.setSexo('M'); 
-        cliente.setNome("Tiago Bacciotti");
+        //cliente.setNome("Tiago Bacciotti");
         cliente.setCpf("00113051697");
 
         String[] vetorNome = cliente.getNome().split(" ");
@@ -26,6 +35,9 @@ public class AppClasses {
         if( cliente.getCpf().equals(cpf2) ) {
             System.out.println("É o mesmo CPF");
         }
+
+
+
 
 
 
