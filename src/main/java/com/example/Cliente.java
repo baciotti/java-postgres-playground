@@ -92,4 +92,10 @@ public void setNome(String nome) {
         
     }
 
+        public String toString() {
+        return "Cliente [nome=" + nome + "]";
+    }
+
+    
+
 }
