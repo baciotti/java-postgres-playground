@@ -7,29 +7,72 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AppBd {
+    private static final String PASSWORD = "";
+    private static final String USERNAME = "gitpod";
+    private static final String JDBC_URL = "jdbc:postgresql://localhost/postgres";
+    //private Connection conn;
+
     public static void main(String[] args) {
+        new AppBd();
+    
+    }
+
+    public AppBd(){
+        try(var conn = getConnection()){                
+            carregarDriverJDBC();
+            listarEstados(conn);
+            localizarEstado(conn, "MG");    
+        } catch (SQLException e) {
+                System.err.println("Não foi possível conectar ao banco de dados: " + e.getMessage());
+
+    }
+
+    }
+
+
+    private  void localizarEstado(Connection conn, String uf) {
         try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {            
-            System.err.println("Não foi possível carregar a biblioteca para acesso ao banco de dados: " + e.getMessage());
+            var statement = conn.createStatement();
+            var sql = "select * from estado where uf = '" + uf + "'";
+            System.out.println(sql);
+            var result = statement.executeQuery(sql);
+            if(result.next()){
+                System.out.printf("Nome: %s\n", result.getString("nome"));
+            }
+
+        } catch (SQLException e) {
+            
+            System.err.println("erro ao executar a consulta sql ");
         }
 
 
-        Statement statement = null;
-        try(var conn = DriverManager.getConnection("jdbc:postgresql://localhost/postgres", "gitpod", "")){                
+    }
+
+    private  void listarEstados(Connection conn) {    
+        //Statement statement = null;
+
+        try{        
             System.out.println("Conexão ok");    
-            statement = conn.createStatement();
+            var statement = conn.createStatement();
             var result = statement.executeQuery("select * from estado;");    
 
             while(result.next()){
                 System.out.printf("Id: %d Nome: %s UF: %s\n", result.getInt("id"), result.getString("nome"), result.getString("uf") );    
             }
-        } catch (SQLException e) {
-            if(statement == null )
-                System.err.println("Não foi possível conectar ao banco de dados: " + e.getMessage());
-            else
-                System.err.println("Não foi possível executa a comnsulta ao banco de dados: " + e.getMessage());
+        } catch (SQLException e ) {
+            System.err.println("erro");
+        }
+    }
 
-    }        
+    private  Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+    }
+
+    private  void carregarDriverJDBC() {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {            
+            System.err.println("Não foi possível carregar a biblioteca para acesso ao banco de dados: " + e.getMessage());
+        }
     }
 }
