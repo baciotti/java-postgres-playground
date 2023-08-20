@@ -7,6 +7,10 @@ public class Estado {
     private int areaKm2;
     private int populacao;
 
+    public String toString(){
+        return "Estado: " + nome + "Id: " + id;
+    }
+
 
     public Long getId() {
         return id;

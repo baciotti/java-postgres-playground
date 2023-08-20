@@ -4,8 +4,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DAO {
-    public Connection conn;
+    protected Connection conn;
     
+
+    public DAO(Connection conn) {
+        this.conn = conn;
+    }
+
 
     public void listar(String tabela) {
         var sql ="select * from " + tabela;

@@ -1,12 +1,11 @@
 package com.example;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import com.example.dao.ConnectionManager;
+import com.example.dao.DAO;
 import com.example.dao.EstadoDAO;
 import com.example.dao.ProdutoDAO;
 import com.example.model.Marca;
@@ -21,12 +20,20 @@ public class AppBd {
     public AppBd(){
         try(var conn = ConnectionManager.getConnection()){  
             var estadoDAO = new EstadoDAO(conn);                          
-            estadoDAO.listar();
-            estadoDAO.localizar("MG");  
+            var listaEstados = estadoDAO.listar();
+            for (var estado : listaEstados) {
+                System.out.println(estado);
+                
+            }
+
+
+
+
+            //estadoDAO.localizar("MG");  
             
             
             var dao = new DAO(conn);
-            dao.listar("produto") ;            // Método genérico de busca
+            //dao.listar("produto") ;            // Método genérico de busca
 
             var marca = new Marca();
             marca.setId(1L);
