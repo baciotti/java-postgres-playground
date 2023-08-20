@@ -19,7 +19,7 @@ public class AppBd {
 
     public AppBd(){
         try(var conn = getConnection()){                
-            carregarDriverJDBC();
+            //carregarDriverJDBC();
             listarEstados(conn);
             localizarEstado(conn, "MG");    
         } catch (SQLException e) {
@@ -32,10 +32,15 @@ public class AppBd {
 
     private  void localizarEstado(Connection conn, String uf) {
         try {
-            var statement = conn.createStatement();
-            var sql = "select * from estado where uf = '" + uf + "'";
-            System.out.println(sql);
-            var result = statement.executeQuery(sql);
+            //var statement = conn.createStatement();
+            // var sql = "select * from estado where uf = '" + uf + "'";
+
+            var sql = "select * from estado where uf = ?";
+            var statement = conn.prepareStatement(sql);
+            statement.setString(1, uf);
+
+            //System.out.println(sql);
+            var result = statement.executeQuery();
             if(result.next()){
                 System.out.printf("Nome: %s\n", result.getString("nome"));
             }
