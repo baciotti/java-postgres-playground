@@ -3,6 +3,10 @@ package com.example;
 public  class MathUtil {
     public static int mdc(int a, int b){
 
+        int maior = Math.max(a,b);
+        b = Math.min(a,b);
+        a = maior;
+
         if(b > 0 && a % b == 0){
             return b;
         }

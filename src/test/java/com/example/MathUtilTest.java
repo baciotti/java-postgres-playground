@@ -35,7 +35,7 @@ public class MathUtilTest {
 
     @Test
     void testMdcP3Positivo() {
-        int a = -6, b = 0;
+        int a = 6, b = 0;
         int esperado = 6;
         int obtido = MathUtil.mdc(a,b);
         assertEquals(esperado, obtido);
@@ -43,5 +43,25 @@ public class MathUtilTest {
 
     }
 
+
+    @Test
+    void testMdcP5() {
+        int a = 6, b = 2;
+        int esperado = MathUtil.mdc(b,a);
+        int obtido = MathUtil.mdc(a,b);
+        assertEquals(esperado, obtido);
+
+
+    }
+
+    @Test
+    void testMdcP8() {
+        int a = 6;
+        int esperado = 6;
+        int obtido = MathUtil.mdc(a,a);
+        assertEquals(esperado, obtido);
+
+
+    }
 
 }
